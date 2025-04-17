@@ -1,0 +1,17 @@
+transformers
+accelerate
+diffusers
+gradio
+kokoro
+misaki
+soundfile
+huggingface-hub
+gradio
+pydub
+espeakng-loader
+phonemizer-fork
+wheel
+setuptools
+pydub
+ffmpeg
+scipy
