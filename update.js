@@ -4,5 +4,10 @@ module.exports = {
     params: {
       message: "git pull"
     }
+  }, {
+    method: "script.start",
+    params: {
+      uri: "install.js"
+    }
   }]
 }
