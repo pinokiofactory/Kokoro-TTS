@@ -787,14 +787,14 @@ def update_file_voice_assignments(files):
     if not files:
         # Hide all voice assignments if no files
         updates = [gr.update(visible=False)]  # Hide the container
-        for i in range(20):
+        for i in range(100):
             updates.append(gr.update(visible=False))
         return updates
     
     # Show the container and update voice assignments for each file
     updates = [gr.update(visible=True)]  # Show the container
     
-    for i in range(20):
+    for i in range(100):
         if i < len(files):
             filename = os.path.basename(files[i])
             updates.append(gr.update(
@@ -810,10 +810,10 @@ def update_file_voice_assignments(files):
 def assign_same_voice_to_all(voice_choice, files):
     """Assign the same voice to all uploaded files"""
     if not files:
-        return [gr.update() for _ in range(20)]
+        return [gr.update() for _ in range(100)]
     
     updates = []
-    for i in range(20):
+    for i in range(100):
         if i < len(files):
             updates.append(gr.update(value=voice_choice))
         else:
@@ -825,7 +825,7 @@ def update_batch_audio_players(audio_files):
     """Update the batch audio players with generated files"""
     updates = []
     
-    for i in range(20):  # Match the number of audio players created
+    for i in range(100):  # Match the number of audio players created
         if i < len(audio_files) and audio_files[i] is not None:
             # Show this audio player with the generated file
             filename = os.path.basename(audio_files[i])
@@ -2806,9 +2806,9 @@ with gr.Blocks(css="""
                         # Dynamic file-voice assignment interface
                         file_voice_assignments = gr.Column(visible=False)
                         
-                        # Create voice assignment radios for each file (up to 20 files)
+                        # Create voice assignment radios for each file (up to 100 files)
                         file_voice_radios = []
-                        for i in range(20):
+                        for i in range(100):
                             voice_radio = gr.Radio(
                                 choices=list(update_voice_choices().keys()),
                                 value=list(update_voice_choices().keys())[0],
@@ -2878,7 +2878,7 @@ with gr.Blocks(css="""
                         
                         # Create multiple audio players for batch results
                         batch_audio_players = []
-                        for i in range(20):  # Support up to 20 files in batch
+                        for i in range(100):  # Support up to 100 files in batch
                             audio_player = gr.Audio(
                                 label=f"File {i+1}",
                                 interactive=False,
@@ -3121,7 +3121,7 @@ Bob: That's wonderful to hear.""",
         updates = [voice_update]  # Main voice radio
         
         # Update file voice radios
-        for _ in range(20):
+        for _ in range(100):
             updates.append(gr.update(choices=list(updated_choices.keys())))
         
         # Update quick voice select
