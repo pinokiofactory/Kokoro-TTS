@@ -6,7 +6,7 @@ kokoro
 misaki
 soundfile
 huggingface-hub
-gradio
+gradio==5.35.0
 pydub
 espeakng-loader
 phonemizer-fork
@@ -17,3 +17,4 @@ ffmpeg
 imageio-ffmpeg
 scipy
 hf_xet
+
