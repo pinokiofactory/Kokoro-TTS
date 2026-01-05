@@ -42,11 +42,15 @@ try:
         os.environ.pop("HF_HUB_OFFLINE", None)
         
     # Load models with environment variables controlling cache location
-    models = {gpu: KModel(repo_id="hexgrad/Kokoro-82M").to('cuda' if gpu else 'cpu').eval() for gpu in [True]}
+    # Try CUDA first, fall back to CPU if not available
     if CUDA_AVAILABLE:
-        print("Model loaded to GPU.")
+        models = {True: KModel(repo_id="hexgrad/Kokoro-82M").to('cuda').eval()}
+        models[False] = models[True]  # Reference same model for CPU fallback path
+        print("Model loaded to GPU (CUDA).")
     else:
-        print("Model loaded to CPU.")
+        models = {False: KModel(repo_id="hexgrad/Kokoro-82M").to('cpu').eval()}
+        models[True] = models[False]  # Reference same model for GPU code path
+        print("CUDA not available. Model loaded to CPU.")
 
     # Load pipelines with environment variables controlling cache location
     pipelines = {lang_code: KPipeline(repo_id="hexgrad/Kokoro-82M", lang_code=lang_code, model=False) for lang_code in 'abpi'}
@@ -73,11 +77,15 @@ except Exception as e:
     os.environ.pop("HF_HUB_OFFLINE", None)
     
     # Load models with environment variables controlling cache location
-    models = {gpu: KModel(repo_id="hexgrad/Kokoro-82M").to('cuda' if gpu else 'cpu').eval() for gpu in [True]}
+    # Try CUDA first, fall back to CPU if not available
     if CUDA_AVAILABLE:
-        print("Model loaded to GPU.")
+        models = {True: KModel(repo_id="hexgrad/Kokoro-82M").to('cuda').eval()}
+        models[False] = models[True]  # Reference same model for CPU fallback path
+        print("Model loaded to GPU (CUDA).")
     else:
-        print("Model loaded to CPU.")
+        models = {False: KModel(repo_id="hexgrad/Kokoro-82M").to('cpu').eval()}
+        models[True] = models[False]  # Reference same model for GPU code path
+        print("CUDA not available. Model loaded to CPU.")
 
     # Load pipelines with environment variables controlling cache location
     pipelines = {lang_code: KPipeline(repo_id="hexgrad/Kokoro-82M", lang_code=lang_code, model=False) for lang_code in 'abpi'}
