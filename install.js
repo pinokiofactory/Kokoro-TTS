@@ -4,22 +4,21 @@ module.exports = {
   },
   run: [
     {
+      method: "shell.run",
+      params: {
+        venv: "env",
+        message: [
+          "uv pip install -r requirements.txt"
+        ],
+      }
+    },
+    {
       method: "script.start",
       params: {
         uri: "torch.js",
         params: {
           venv: "env"
         }
-      }
-    },
-    {
-      method: "shell.run",
-      params: {
-        venv: "env",
-        message: [
-          "uv pip install gradio devicetorch",
-          "uv pip install -r requirements.txt"
-        ],
       }
     },
     // espeak-ng installer script lifted from AllTalk Launcher from 6Morpheus6
