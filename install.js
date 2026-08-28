@@ -1,30 +1,27 @@
 module.exports = {
+  requires: {
+    bundle: "ai"
+  },
   run: [
-    // Delete this step if your project does not use torch
     {
       method: "script.start",
       params: {
         uri: "torch.js",
         params: {
-          venv: "env",                // Edit this to customize the venv folder path
-          // xformers: true   // uncomment this line if your project requires xformers
-          // triton: true   // uncomment this line if your project requires triton
-          // sageattention: true   // uncomment this line if your project requires sageattention
+          venv: "env"
         }
       }
     },
-     // Edit this step with your custom install commands
     {
       method: "shell.run",
       params: {
-        venv: "env",                // Edit this to customize the venv folder path
+        venv: "env",
         message: [
           "uv pip install gradio devicetorch",
           "uv pip install -r requirements.txt"
         ],
       }
     },
-
     // espeak-ng installer script lifted from AllTalk Launcher from 6Morpheus6
     // https://github.com/pinokiofactory/AllTalk-TTS/blob/main/install.js
     {
